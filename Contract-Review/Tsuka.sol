@@ -6,6 +6,12 @@
 
 https://www.dejitarutsuka.io/
 
+Issues:
+- No known contract Audits according to etherscan.io
+- BlockBots allows for the owner to block whomever they want. Not based on any algorithm or logic.
+  Left to the owner discrestion.
+ -
+
 */
 
 // SPDX-License-Identifier: Unlicensed
