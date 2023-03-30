@@ -1,0 +1,22 @@
+//Will not Compile do to return type None
+contract test_asm {
+	import Leaderboard;
+	const MY_BOARD: string = "my_test_board";
+
+	// this method will return a list of addresses fetched from a leaderboard
+	// we could use a similar approach to return numbers, strings or structs
+	// it is also possible to return mixed type
+	public getWinnerAddreses() // NOTE we specify no return type (equivalent to void in other languages)
+	{
+		local i:number = 0; 
+		while (i < 10) {
+			local ranked_addr:address = Leaderboard.getAddress(MY_BOARD, i);
+			
+			asm {
+				PUSH $ranked_addr	// here we use the $ symbol along with the name of local variable declared previously
+			}
+
+			i += 1;
+		}		
+	}
+}

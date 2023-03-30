@@ -1,0 +1,16 @@
+contract test {
+	global counter: number;
+
+	constructor(owner:address)
+	{
+		counter = 0;
+	}
+
+	public increment()
+	{
+		if (counter < 0){
+			throw "invalid state";
+		}
+		counter += 1;
+	}
+}

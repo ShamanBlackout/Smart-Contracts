@@ -1,0 +1,16 @@
+contract test {
+	import Runtime;
+	import Token;
+
+	public paySomething(from:address, amount:number, symbol:string)
+	{
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+
+		local flags:TokenFlags = Token.getFlags(symbol);
+		local price : number = 1; 
+		if (flags.isSet(TokenFlags.Fungible)) {
+			local thisAddr:address = $THIS_ADDRESS;
+			Token.transfer(from, thisAddr, "SOUL", price);
+		}
+	}
+}

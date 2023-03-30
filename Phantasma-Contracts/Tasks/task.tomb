@@ -1,0 +1,38 @@
+contract test {
+	import Time;
+	import Task;
+	import Call;
+
+	global victory:bool;
+	global deadline:timestamp;
+
+	public win(from:address)
+	{
+		victory = true;
+	}
+
+
+		task checkResult(){
+		if (victory) {
+			break;
+		}
+
+		local now: timestamp = Time.now();
+
+		if (now >= deadline) {
+			break;
+		}
+
+		continue;
+
+	}
+
+	constructor(owner:address) {
+		victory = false;
+		deadline = Time.now(); //+ Time.hours(2); no such function as Time.hours
+		Task.start(Call.method<method>(checkResult), owner, 0, TaskMode.Always, 999);//needs to be in a for loop
+	
+	}
+}
+
+	

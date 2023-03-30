@@ -1,0 +1,22 @@
+
+contract test {
+
+	import Leaderboard;
+	const MY_BOARD: string = "my_test_board";
+
+	// this method will return a list of addresses fetched from a leaderboard
+	// we could use a similar approach to return numbers, strings or structs
+
+	public getWinnerAddreses() : address* // NOTE: we add an asterisk after the return type (it declares this method as a "multi-return")
+	{
+		local i:number = 0; 
+		while (i < 10) {
+			return  Leaderboard.getAddress(MY_BOARD, i); 
+			// NOTE: in "multi-return" methods a return won't terminate execution of the method unless its expression-less return
+			i += 1;
+		}		
+		
+		return; // NOTE: this is optional but a expression-less return like this forces a multi-return method to end
+		// any code here will never be reached (or will generate a compile error in latest TOMB version)
+	}
+}

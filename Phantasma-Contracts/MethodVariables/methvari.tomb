@@ -1,0 +1,51 @@
+
+/***************************************
+  This contract appears to set methods
+  to a variable
+  **************************************/
+contract test {
+
+	import Runtime;
+	import Map;
+	import Call;
+
+	global _counter:number;
+
+	global _callMap: storage_map<address,method>;
+
+	constructor(owner:address)
+	{
+		_counter = 0;
+	}
+/*
+	public callUser(from:address) {
+		local target: method = _callMap.get(from);
+
+		Call.method<method>(target, from);
+	}
+*/
+	private incCounter(target:address) {
+		_counter += 1;
+	}
+
+	private subCounter(target:address) {
+		_counter -= 1;
+	}
+	
+	public registerUser(from:address, amount:number)
+	{
+		local target: method;
+
+		if (amount > 10) {
+			target = Call.method<method>(incCounter,from);
+		}
+		else {
+			target = Call.method<method>(subCounter,from);
+		}
+
+		_callMap.set(from, target);
+	}
+
+	
+
+}

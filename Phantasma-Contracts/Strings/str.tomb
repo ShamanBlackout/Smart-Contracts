@@ -1,0 +1,14 @@
+contract test {
+	global val: string;
+
+	constructor(owner:address)
+	{
+		val += "hello";
+		val += " world";
+	}
+
+	public getLength():number
+	{
+		return val.length();
+	}
+}

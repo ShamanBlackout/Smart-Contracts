@@ -1,0 +1,18 @@
+contract test {
+	import Random;
+
+	global my_state: number;
+
+	constructor(owner:address)
+	{
+		Random.seed(16676869); // optionally we can specify a seed, this will make the next sequence of random numbers to be deterministic
+		//my_state = mutateState(); // unable to call function inside constructor.
+		my_state = Random.generate() %1024;
+	}
+
+	public mutateState(): number
+	{
+		my_state = Random.generate() % 1024; // Use modulus operator to constrain the random number to a specific range
+		return my_state;
+	}
+}
