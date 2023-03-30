@@ -1,0 +1,17 @@
+contract test {
+	import Runtime;
+	import Token;
+
+	public paySomething(from:address, quantity:number)
+	{
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+
+		local price: number = 10;
+		price *= quantity;
+
+		local thisAddr:address = $THIS_ADDRESS;
+		Token.transfer(from, thisAddr, "SOUL", price);
+
+		// TODO after payment give something to 'from' address
+	}
+}

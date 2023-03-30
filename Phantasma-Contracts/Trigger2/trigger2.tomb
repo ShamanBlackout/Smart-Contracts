@@ -1,0 +1,13 @@
+contract test {
+
+	import Call;
+
+	trigger onReceive(from:address,to:address, symbol:string, amount:number)
+	{
+		if (symbol != "SOUL") {
+			Call.contract<none>("Swap", "SwapTokens", from, symbol, "SOUL", amount);
+		}
+
+		return;
+	}
+}

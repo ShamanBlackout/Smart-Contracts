@@ -1,0 +1,11 @@
+contract test {
+
+	trigger onReceive(from:address,to:address,symbol:string, amount:number)
+	{
+		if (symbol != "KCAL") {
+			throw "can't receive asset: " + symbol;
+		}
+
+		return;
+	}
+}
