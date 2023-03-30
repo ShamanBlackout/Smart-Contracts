@@ -23,6 +23,8 @@ struct item_ram
 }
 
 token NACHO {
+	import NFT;
+
 	global _owner: address;
 
 	const LUCHADOR_SERIES: number = 1;
@@ -60,7 +62,8 @@ token NACHO {
 	nft item<item_rom, item_ram> {
 
 		property name: string {
-			switch(_ROM.kind)
+			local rom_kind: number = _ROM.kind;
+			switch(rom_kind)
 			{
 				case 1: return "Potion";
 				case 2: return "Gloves";
