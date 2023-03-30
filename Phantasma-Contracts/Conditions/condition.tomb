@@ -1,0 +1,17 @@
+contract test {
+	public isEvenAndPositive(n:number):bool
+	{
+        local cond1:bool  = n>0;
+        local cond2: bool = (n%2) == 0;        
+    
+		if (cond1 && cond2)
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+	}
+
+}

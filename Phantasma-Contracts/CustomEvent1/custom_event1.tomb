@@ -1,0 +1,18 @@
+
+contract test {
+	import Token;
+	import Runtime;
+	
+	event MyPayment:number = "{address} paid {data}"; // here we use a short-form description
+
+	public paySomething(from:address, x:number)
+	{		
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+
+		local price: number = 10;
+		local thisAddr:address = $THIS_ADDRESS;
+		Token.transfer(from, thisAddr, "SOUL", price);
+
+		emit MyPayment(from, price);
+	}
+}

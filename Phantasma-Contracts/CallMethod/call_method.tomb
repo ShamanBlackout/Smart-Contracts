@@ -1,0 +1,13 @@
+contract test {
+	private sum(a:number, b:number): number {
+		return a + b;
+	}
+
+	public calculatePrice(x:number): number
+	{		
+		local price: number = 10;
+		price = this.sum(price, x); // here we use 'this' for calling another method
+
+		return price;
+	}
+}

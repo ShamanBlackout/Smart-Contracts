@@ -1,0 +1,16 @@
+token GHOST {
+	property name: string = "GHOST";
+}
+	
+script deploy {
+
+	import Token;
+	import Module;
+
+	code() {
+		local maxSupply:number = 50000;
+		local decimals:number = 1;
+		local flags:TokenFlags = TokenFlags.None;
+		Token.create(@P2KAkQRrL62zYvb5198CHBLiKHKr4bJvAG7aXwV69rtbeSz, "GHOST",  "Ghost Token", maxSupply, decimals, flags, Module.getScript(GHOST),  Module.getABI(GHOST));
+	}
+}

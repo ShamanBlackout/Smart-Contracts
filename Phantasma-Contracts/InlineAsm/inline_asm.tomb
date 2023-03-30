@@ -1,0 +1,13 @@
+
+script startup {
+
+	import Call;
+
+	code() {
+
+		local temp: string="";
+		asm {
+			LOAD $temp "hello"
+		}
+	}
+}

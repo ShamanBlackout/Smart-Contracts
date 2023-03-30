@@ -1,0 +1,24 @@
+contract hello
+{
+	import Token;
+	import Runtime;
+
+	global admin: address;
+
+	constructor(owner:address)
+	{
+		admin = owner;
+	}
+	
+	trigger onUpgrade(from:address) {
+		Runtime.expect(Runtime.isWitness(admin), "witness failed");
+		return;
+	}
+	
+	public callMe(from:address)
+	{
+		Runtime.expect(Runtime.isWitness(from), "witness failed");
+		local thisAddr:address = $THIS_ADDRESS;
+		Token.transfer(from, thisAddr, "KCAL", Decimal.convert(10, 5));
+	}
+}
